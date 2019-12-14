@@ -19,70 +19,23 @@ For a mass of 100756, the fuel required is 33583.
 The Fuel Counter-Upper needs to know the total fuel requirement. To find it, individually calculate the fuel needed for the mass of each module (your puzzle input), then add together all the fuel values.
 
 What is the sum of the fuel requirements for all of the modules on your spacecraft?
-
-Your puzzle answer was 3301059.
-
-The first half of this puzzle is complete! It provides one gold star: *
-
---- Part Two ---
-During the second Go / No Go poll, the Elf in charge of the Rocket Equation Double-Checker stops the launch sequence. Apparently, you forgot to include additional fuel for the fuel you just added.
-
-Fuel itself requires fuel just like a module - take its mass, divide by three, round down, and subtract 2. However, that fuel also requires fuel, and that fuel requires fuel, and so on. Any mass that would require negative fuel should instead be treated as if it requires zero fuel; the remaining mass, if any, is instead handled by wishing really hard, which has no mass and is outside the scope of this calculation.
-
-So, for each module mass, calculate its fuel and add it to the total. Then, treat the fuel amount you just calculated as the input mass and repeat the process, continuing until a fuel requirement is zero or negative. For example:
-
-A module of mass 14 requires 2 fuel. This fuel requires no further fuel (2 divided by 3 and rounded down is 0, which would call for a negative fuel), so the total fuel required is still just 2.
-At first, a module of mass 1969 requires 654 fuel. Then, this fuel requires 216 more fuel (654 / 3 - 2). 216 then requires 70 more fuel, which requires 21 fuel, which requires 5 fuel, which requires no further fuel. So, the total fuel required for a module of mass 1969 is 654 + 216 + 70 + 21 + 5 = 966.
-The fuel required by a module of mass 100756 and its fuel is: 33583 + 11192 + 3728 + 1240 + 411 + 135 + 43 + 12 + 2 = 50346.
-What is the sum of the fuel requirements for all of the modules on your spacecraft when also taking into account the mass of the added fuel? (Calculate the fuel requirements for each module separately, then add them all up at the end.)
-
-Although it hasn't changed, you can still get your puzzle input.
 */
 
+// input data
 const data = [ 110321,61817,107271,126609,84016,119187,53199,117553,83163,69434,62734,76774,75016,126859,114626,70782,102903,105871,108500,149367,99266,131731,86778,110561,116521,138216,55347,135516,126801,124902,103083,130858,54885,126837,71103,143975,135207,77264,149331,85252,78910,84007,123953,87355,113433,57750,78394,106081,110942,118180,71745,60080,56637,105491,111329,71799,59962,60597,75241,102506,75341,129539,71011,127185,51245,144401,78592,116835,52029,134905,80104,146304,113780,108124,131268,124765,78847,76897,56445,116487,62068,125176,122259,134261,101127,127089,55793,113113,132835,118901,59574,113399,73232,93720,144450,129604,101741,108759,55891,52939 ];
 
-// PART ONE
-let total = 0;
+// total fuel required
+let totalFuelRequired = 0;
 
 function calculate(n: number) {
-  return math.floor(n / 3) - 2;
+  	return math.floor(n / 3) - 2;
 }
 
+// calculate total fuel required for all modules
 for (const n of data) {
-  total += calculate(n);
+  	totalFuelRequired += calculate(n);
 }
 
-print(total); // 3301059
+print(totalFuelRequired); // 3301059
 
-// PART TWO
-let totalFuel = 0;
-class module {
-	public fuel: number
-	constructor(public readonly mass: number) {
-		this.fuel = math.floor(mass / 3) - 2
-		
-		let fuels = [this.fuel]
-		while (true) {
-			fuels.push(new module(fuels[fuels.size()-1]).fuel)
-			
-			if (fuels[fuels.size() - 1] < 0) {
-				let totalNewFuel = 0;
-				
-				for (const fuel of fuels) {
-					totalNewFuel += fuel;
-				}
-				this.fuel += totalNewFuel;
-
-				break
-			} else {
-				wait()
-			}
-		}
-	}
-}
-
-for (const star of data) {
-	totalFuel += new module(star).fuel
-}
-
-export { }
+export {}
