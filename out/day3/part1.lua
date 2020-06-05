@@ -1,5 +1,5 @@
 -- Compiled with https://roblox-ts.github.io v0.3.1
--- June 5, 2020, 10:24 PM New Zealand Standard Time
+-- June 5, 2020, 10:29 PM New Zealand Standard Time
 
 local wire1 = { "R98", "U47", "R26", "D63", "R33", "U87", "L62", "D20", "R33", "U53", "R51" };
 local wire2 = { "U98", "R91", "D20", "R16", "D67", "R40", "U7", "R15", "U6", "R7" };
