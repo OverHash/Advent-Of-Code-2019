@@ -10,6 +10,8 @@
 		"target": "es6",
 		"typeRoots": [ "node_modules/@rbxts" ],
 		"moduleResolution": "Node",
+		"incremental": true,
+		"tsBuildInfoFile": "out/tsconfig.tsbuildinfo",
 
 		// required, configurable
 		"rootDir": "src",
